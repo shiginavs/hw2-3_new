@@ -1,0 +1,86 @@
+
+
+
+<div class="modal">
+  <div class="modal-content">
+
+<div class="page-header">
+  <h1>Добавить студента</h1>
+</div>
+<div class="panel">
+  <div >
+  <form [formGroup]="myForms" novalidate (ngSubmit)="submit()" class="form-add-edit">
+<!--    <div formGroupName="fio">-->
+      <div class="form-group">
+        <label>Фамилия</label>
+        <input class="form-control" name="surname" formControlName="surname" />
+
+        <div class="alert alert-danger"
+             *ngIf="myForms.controls['surname'].invalid && myForms.controls['surname'].touched ">
+          Введите Отчество
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label>Имя</label>
+        <input class="form-control" name="name" formControlName="name" />
+
+        <div class="alert alert-danger"
+             *ngIf="(myForms.controls['name'].invalid && myForms.controls['name'].touched) ">
+          Введите Имя
+        </div>
+
+        <div class="alert alert-danger"
+             *ngIf="myForms.controls['name'].value &&  myForms.controls['name'].value == myForms.controls['surname'].value">
+          Имя совпадает с фамилией
+        </div>
+
+        <div class="alert alert-danger"
+             *ngIf="myForms.controls['name'].value && myForms.controls['name'].value == myForms.controls['patronymic'].value">
+          Имя совпадает с отчеством
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label>Отчество</label>
+        <input class="form-control" name="patronymic" formControlName="patronymic" />
+        <div class="alert alert-danger"
+             *ngIf="myForms.controls['patronymic'].invalid && myForms.controls['patronymic'].touched">
+          Введите Отчество
+        </div>
+
+      </div>
+<!--    </div>-->
+    <div class="form-group">
+      <label>Дата рождения</label>
+      <input class="form-control" name="date_birth" formControlName="date_birth" type="date"/>
+
+      <div class="alert alert-danger"
+           *ngIf="myForms.controls['date_birth'].invalid && myForms.controls['date_birth'].touched">
+        Некорректная дата рождения
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Средний балл</label>
+      <input class="form-control" name="score" formControlName="average_score" />
+      <div class="alert alert-danger"
+           *ngIf="myForms.controls['average_score'].invalid && myForms.controls['average_score'].touched">
+        Введите средний балл
+      </div>
+      <div class="alert alert-danger"
+           *ngIf="(myForms.controls['average_score'].value > 5) || (myForms.controls['average_score'].value < 0)">
+        Некорректный средний балл
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-default" >
+        Отправить
+      </button>
+      <button (click)="exitForm()">Отмена</button>
+    </div>
+  </form>
+  </div>
+
+</div>
+  </div>
+</div>
