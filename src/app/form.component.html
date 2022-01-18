@@ -53,22 +53,22 @@
 <!--    </div>-->
     <div class="form-group">
       <label>Дата рождения</label>
-      <input class="form-control" name="date_birth" formControlName="date_birth" type="date"/>
+      <input class="form-control" name="dateBirth" formControlName="dateBirth" type="date"/>
 
       <div class="alert alert-danger"
-           *ngIf="myForms.controls['date_birth'].invalid && myForms.controls['date_birth'].touched">
+           *ngIf="myForms.controls['dateBirth'].invalid && myForms.controls['dateBirth'].touched">
         Некорректная дата рождения
       </div>
     </div>
     <div class="form-group">
       <label>Средний балл</label>
-      <input class="form-control" name="score" formControlName="average_score" />
+      <input class="form-control" name="score" formControlName="averageScore" />
       <div class="alert alert-danger"
-           *ngIf="myForms.controls['average_score'].invalid && myForms.controls['average_score'].touched">
+           *ngIf="myForms.controls['averageScore'].invalid && myForms.controls['averageScore'].touched">
         Введите средний балл
       </div>
       <div class="alert alert-danger"
-           *ngIf="(myForms.controls['average_score'].value > 5) || (myForms.controls['average_score'].value < 0)">
+           *ngIf="(myForms.controls['averageScore'].value > 5) || (myForms.controls['averageScore'].value < 0)">
         Некорректный средний балл
       </div>
     </div>
