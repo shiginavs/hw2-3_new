@@ -1,32 +1,31 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl} from '@angular/forms';
-import {formatDate} from "@angular/common";
-import {Item} from "./app.component";
-import { ITEMS } from './items';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { Item } from "./app.component";
+import { ITEMS } from "./items";
 
 @Component({
-  selector: 'form-app',
-  templateUrl: './form.component.html',
-  styleUrls: ['./app.component.css'],
+  selector: "form-app",
+  templateUrl: "./form.component.html",
+  styleUrls: ["./app.component.css"],
 
 })
 
 
 
 export class FormComponent implements OnInit{
-  myForms : FormGroup;
+  myForms: FormGroup;
   constructor(){
     this.myForms = new FormGroup({
       // fio: new FormGroup({
         "surname": new FormControl("", Validators.required),
-        "name": new FormControl("", [Validators.required /*, this.studentNameValidator*/]),
+        "name": new FormControl("", [Validators.required]),
         "patronymic": new FormControl("", [Validators.required]),
       // }),
-      "date_birth": new FormControl("", [
+      "dateBirth": new FormControl("", [
         Validators.required,
-        this.dateValidator
+        this.dateValidator,
       ]),
-      "average_score": new FormControl("", [Validators.required])
+      "averageScore": new FormControl("", [Validators.required])
     });
   }
 
@@ -43,18 +42,18 @@ export class FormComponent implements OnInit{
     }
   }
 
-  setEditForm(item: Item) {
+  setEditForm(item: Item): void {
     this.myForms.patchValue({
       surname: item.surname,
       name: item.name,
       patronymic: item.patronymic,
-      date_birth: item.date_birth,
-      average_score: item.average_score
+      dateBirth: item.dateBirth,
+      averageSore: item.averageScore
     });
   }
 
 
-  submit(){
+  submit(): void{
     // this.items.push(this.myForms.value as Item);
     // this.myForms.reset();
 
@@ -65,23 +64,23 @@ export class FormComponent implements OnInit{
       this.items.push(item);
     }
     this.myForms.reset();
-    this.onExit.emit();
+    this.exit.emit();
   }
 
   editingIndex: number = 0;
-  @Output() onExit = new EventEmitter();
+  @Output() exit = new EventEmitter();
 
-  exitForm() {
+  exitForm(): void {
     this.myForms.reset();
-    this.onExit.emit();
+    this.exit.emit();
   }
-  dateValidator(control: FormControl): {[s:string]:boolean}|null{
-    let now = new Date().getFullYear();
-    let year = new Date(control.value).getFullYear();
-    let par = now - year;
+  dateValidator(control: FormControl): { [s: string]: boolean } | null{
+    const now = new Date().getFullYear();
+    const year = new Date(control.value).getFullYear();
+    const par = now - year;
     console.log(par);
-    if( par < 10){
-      return {"date_birth": true};
+    if ( par < 10) {
+      return { "dateBirth": true };
     }
     return null;
   }

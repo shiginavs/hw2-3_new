@@ -31,12 +31,12 @@
         </div>
 
         <div class="alert alert-danger"
-             *ngIf="myForms.controls['name'].value &&  myForms.controls['name'].value == myForms.controls['surname'].value">
+             *ngIf="myForms.controls['name'].value &&  myForms.controls['name'].value === myForms.controls['surname'].value">
           Имя совпадает с фамилией
         </div>
 
         <div class="alert alert-danger"
-             *ngIf="myForms.controls['name'].value && myForms.controls['name'].value == myForms.controls['patronymic'].value">
+             *ngIf="myForms.controls['name'].value && myForms.controls['name'].value === myForms.controls['patronymic'].value">
           Имя совпадает с отчеством
         </div>
 
